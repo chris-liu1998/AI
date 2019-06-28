@@ -30,8 +30,7 @@ def Job_gamestart():#打开游戏线程
     while True:
         img=screenshot()#截图
         str=pytesseract.image_to_string(img)#文字识别
-        #判断动画是否已经加载完毕
-        print(str)
+        #判断动画是否已经加载完毕 q
         if str.find('GAME')>0:
             #进入游戏
             op.enter()
@@ -41,9 +40,10 @@ def Job_gamestart():#打开游戏线程
 
 def Job_AI_move():
     pythoncom.CoInitialize()
-    while True:#判断是否开始游戏
+
+    #while True:#判断是否开始游戏
         #while If_gamestart==True:
-            move.findpath()
+    move.getPosition()
 
 
 
@@ -51,9 +51,9 @@ if __name__ == '__main__':
     #打开游戏
     win32api.ShellExecute(0, 'open', r'F:\SteamLibrary\steamapps\common\Just Shapes & Beats\JSB.exe', '', '', 1)
     #运行线程
-    thread_formfocus = threading.Thread(target=Job_formfocus, name="Job1", args=())
-    thread_formfocus.start()
-    thread_gamestart = threading.Thread(target=Job_gamestart, name="Job2", args=())
-    thread_gamestart.start()
+    #thread_formfocus = threading.Thread(target=Job_formfocus, name="Job1", args=())
+    #thread_formfocus.start()
+    #thread_gamestart = threading.Thread(target=Job_gamestart, name="Job2", args=())
+    #thread_gamestart.start()
     thread_AI_move = threading.Thread(target=Job_AI_move, name="Job3", args=())
     thread_AI_move.start()

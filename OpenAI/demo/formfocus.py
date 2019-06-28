@@ -11,7 +11,7 @@ class setf():
     def __init__(self):
         self.gamename = 'JSB.exe'
         self.shell = win32com.client.Dispatch("WScript.Shell")
-        self.dll = ctypes.windll.LoadLibrary("C:\\Windows\\System32\\user32.dll")
+        self.dll = ctypes.windll.LoadLibrary("C:\\Windows\\System32\\user32.dll")#加载组件
 
     def setfocus(self):
         pid = self.get_pid_for_pname(self.gamename)

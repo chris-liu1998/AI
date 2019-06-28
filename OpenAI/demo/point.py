@@ -15,3 +15,8 @@ class Point(object):
     #重写print
     def info(self):
        print(self.x,self.y)
+    def If_zero(self):#判断是否为0
+        if self.x==0 and self.y==0:
+            return False
+        else:
+            return False

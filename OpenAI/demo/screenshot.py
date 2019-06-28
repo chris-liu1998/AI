@@ -3,6 +3,7 @@
 import win32gui
 import win32ui
 import win32con
+import ctypes
 from PIL import Image
 
 
@@ -11,6 +12,7 @@ def screenshot():
     hWnd = win32gui.FindWindow(None, "Just Shapes & Beats")  # 窗口的类名可以用Visual Studio的SPY++工具获取
     # 获取句柄窗口的大小信息
     left, top, right, bot = win32gui.GetWindowRect(hWnd)
+    print(win32gui.GetWindowRect(hWnd))
     width = right - left
     height = bot - top
     # 返回句柄窗口的设备环境，覆盖整个窗口，包括非客户区，标题栏，菜单，边框
@@ -47,3 +49,5 @@ def screenshot():
 
     # 返回截图
     return im_PIL
+
+
