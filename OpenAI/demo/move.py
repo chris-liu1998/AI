@@ -1,20 +1,21 @@
 # 创作者 马如云
 # ai移动类
-from demo.point import Point
-from demo.operation import Operation
-from demo.screenshot import  screenshot
+from OpenAI.demo.point import Point
+from OpenAI.demo.operation import Operation
+from OpenAI.demo.screenshot import screenshot
+
 
 class Move:
-
-    op=Operation()#获取一个操作
-    If_alive=False
-    If_find_Destination=False
+    op = Operation()  # 获取一个操作
+    If_alive = False
+    If_find_Destination = False
 
     def __init__(self):
         return
-    def findpath(self,player:Point,goal:Point):#从player到目的地goal的算法
-        dir = goal-player
-        if abs(dir.x)<0 and abs(dir.y)<0:
+
+    def findpath(self, player: Point, goal: Point):  # 从player到目的地goal的算法
+        dir = goal - player
+        if abs(dir.x) < 0 and abs(dir.y) < 0:
             if goal.x == 0 and goal.y == 0:
                 self.op.doNothing()
             elif abs(dir.x) > abs(dir.y) and dir.x > 0:
@@ -39,11 +40,13 @@ class Move:
 
     def If_safe(self):
         return
-    def AI_move(self):#移动主程序
-        player,destination=self.getPosition()
-        self.findpath(player,destination)#直接移动到目的地
+
+    def AI_move(self):  # 移动主程序
+        player, destination = self.getPosition()
+        self.findpath(player, destination)  # 直接移动到目的地
         return
-    def getPosition(self):#获取
+
+    def getPosition(self):  # 获取
         output = open('data.txt', 'w')
         img = screenshot()  # 截图
         img_array = img.load()  # 获取像素点信息
@@ -61,16 +64,15 @@ class Move:
         for i in range(0, h):
             for j in range(0, w):
                 pixel = img_array[j, i]
-                #输出到文件
-
+                # 输出到文件
 
                 if pixel == (0, 254, 254):
-                    #print('(', end="", file=output)
-                    #print(j, end="", file=output)
-                    #print(',', end="", file=output)
-                    #print(i, end="", file=output)
-                    #print(')', end=" ", file=output)
-                    #print(pixel, file=output)
+                    # print('(', end="", file=output)
+                    # print(j, end="", file=output)
+                    # print(',', end="", file=output)
+                    # print(i, end="", file=output)
+                    # print(')', end=" ", file=output)
+                    # print(pixel, file=output)
                     if first1 == False:  # 第一次找到的点即为左上坐标
                         r1 = Point(j, i)
                         first1 = True
@@ -85,9 +87,6 @@ class Move:
         r1.info()
         r2.info()
         player.info()
-        self.If_alive=player.If_zero()
-        self.If_find_Destination=destination.If_zero()
-        return player,destination
-
-
-
+        self.If_alive = player.If_zero()
+        self.If_find_Destination = destination.If_zero()
+        return player, destination
